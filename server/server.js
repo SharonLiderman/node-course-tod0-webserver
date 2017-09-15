@@ -113,18 +113,10 @@ app.post('/users/login', (req, res) => {
     User.findByCredentials(body.email, body.password).then((user) => {
         user.generateAuthToken().then((token) => {
             res.header('x-auth', token).send(user);
-        });
-        //res.send(user);
+        });        
     }).catch ((e) => {
         res.status(400).send();
-    });
-    // var userFromDB = User.findOne({email : user.emai});    
-    // bcrypt.compare(user.password, userFromDB.password, (err, result)=>{
-    //     if (!res){
-    //         return res.status(401).send(err);
-    //     }
-    //     res.send(req.body);
-    // });    
+    });   
 });
 
 app.listen(port, ()=>{
